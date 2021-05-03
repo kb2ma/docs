@@ -62,7 +62,7 @@ __Warning:__ This action is only supported on devices with an Agent version >= 1
 
 ## Device-specific actions
 
-[Application members][application-members] with the Operator role and above can perform any of the actions listed below.
+> [Application members][application-members] with the Operator role and above can perform any of the actions listed below.
 
 ### Update Locking
 
