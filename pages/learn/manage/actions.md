@@ -12,7 +12,7 @@ Actions allow you to control the status of your applications and devices during 
 
 ## General actions
 
-[Application members][application-members] with the Operator role and above can perform any of the actions listed below.
+> [Application members][application-members] with the Operator role and above can perform any of the actions listed below.
 
 ### Enable Public Device URL
 
