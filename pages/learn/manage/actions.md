@@ -179,4 +179,4 @@ __Warning:__ It is a good idea to [move your devices to another application][mov
 [developer]:/learn/manage/account/#developer
 [support-access]:/learn/manage/support-access
 [inactive-devices]:/learn/manage/billing/#inactive-devices
-[application-members]:learn/manage/account/#application-members
+[application-members]:/learn/manage/account/#application-members
