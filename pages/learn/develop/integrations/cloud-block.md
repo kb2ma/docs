@@ -1,6 +1,13 @@
-# Cloud integrations via cloud block
+---
+dynamic:
+  variables: [ $cloud ]
+  ref: $original_ref/$cloud
+  $switch_text: $cloud message queue integration with cloud block
+---
 
-Cloud service providers like AWS offer valuable tools for collection and management of data, like message queues and data storage, but often setup and use of these services is specific to the cloud provider. At balena our mission is to reduce friction for our fleet owners. So we provide a *cloud block* container, whose aim is to provide a simple, consistent interface to these services, configured by environment variables.
+# {{ $cloud.name }} message queue integration with cloud block
+
+Cloud service providers like {{ $cloud.name }} offer valuable tools for collection and management of data, like message queues and data storage, but often setup and use of these services is specific to the cloud provider. At balena our mission is to reduce friction for our fleet owners. So we provide a *cloud block* container, whose aim is to provide a simple, consistent interface to these services, configured by environment variables. Initially we support only the cloud provider's message queue service.
 
 The diagram below shows how the cloud block forwards data to a cloud messaging service. On the left is a balena device with three containers, where a data source publishes data to MQTT on some source topic to which the cloud block also subscribes. The cloud block then applies the user supplied configuration to forward the data to the provider's message queue service -- whether it's AWS SQS, Azure Event Hubs, or Google Pub/Sub.
 
@@ -13,7 +20,7 @@ The documentation below shows you how to implement this data flow.
  1. Push service definitions to balenaCloud
  1. Provision device
 
-To illustrate how the cloud block works, we will use a data source that takes temperature readings from the device's CPU. These readings are readily available and do not require hardware or software setup. We will send these readings to AWS Simple Queue Service (SQS) as JSON data messages.
+To illustrate how the cloud block works, we will use a data source that takes temperature readings from the device's CPU. These readings are readily available and do not require hardware or software setup. We will send these readings to {{ $cloud.name }} {{ $cloud.msgQueueFullName }} as JSON data messages.
 
 ## Define device services
 
@@ -35,17 +42,7 @@ For our example application, [data_source/main.py](https://github.com/kb2ma/clou
 ## Create application
 From your balenaCloud account, create a Microservices or Starter application as described in the balena Getting Started instructions. Next, you must define environment variables for the application that configure the cloud block, as described here. The configuration for the cloud block must identify the AWS SQS queue to use as well as the AWS Identity and Access Management (IAM) identity that is sending messages.
 
-### SQS variables
-These variables are specific to use of the AWS SQS service.
-
-| Variable         | Notes                                                                             |
-|------------------|-----------------------------------------------------------------------------------|
-|AWS_SQS_QUEUE_NAME|Name of the queue. Identified as `<cloud-topic>` in the architecture diagram above.|
-|AWS_SQS_REGION    |AWS region in which the queue is defined                                           |
-|AWS_SQS_ACCESS_KEY|IAM access key ID                                                                  |
-|AWS_SQS_SECRET_KEY|IAM secret key for access key                                                      |
-
-See the [SQS Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) for help setting up the queue service. See the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) for help setting up the identity. The IAM User must at least be assigned the SQS *SendMessage* permission.
+{{import "cloud-block/serviceVariables"}}
 
 ### Cloud block variables
 These variables configure the cloud block on the balena device.

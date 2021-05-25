@@ -1,0 +1,17 @@
+[
+  {
+    "id": "aws",
+    "name": "AWS",
+    "msgQueueFullName": "Simple Queue Service"
+  },
+  {
+    "id": "azure",
+    "name": "Azure",
+    "msgQueueFullName": "Event Hubs"
+  },
+  {
+    "id": "gcp",
+    "name": "GCP",
+    "msgQueueFullName": "Pub/Sub"
+  }
+]

@@ -13,4 +13,4 @@ excerpt: Guides to integrate {{ $names.company.lower }} with a variety of IoT pl
 * [Azure IoT Hub](azure-iot-hub/)
 * [Google IoT](google-iot/)
 * [IBM BlueMix](bluemix/)
-* [Cloud Block](cloud-block)
+* [Cloud Block](cloud-block/aws)

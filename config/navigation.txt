@@ -50,7 +50,7 @@ Learn
       Google IoT[/learn/develop/integrations/google-iot]
       IBM Bluemix[/learn/develop/integrations/bluemix]
       Microsoft Azure[/learn/develop/integrations/azure-iot-hub]
-      Cloud Block[/learn/develop/integrations/cloud-block]
+      Cloud Block[/learn/develop/integrations/cloud-block/$cloud]
 
   DEPLOY
     [/learn/deploy/deployment]
