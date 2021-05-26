@@ -2,16 +2,19 @@
   {
     "id": "aws",
     "name": "AWS",
-    "msgQueueFullName": "Simple Queue Service"
+    "msgQueueFullName": "Simple Queue Service",
+    "secretStoreFullName": "Secrets Manager"
   },
   {
     "id": "azure",
     "name": "Azure",
-    "msgQueueFullName": "Event Hubs"
+    "msgQueueFullName": "Event Hubs",
+    "secretStoreFullName": "Key Vault"
   },
   {
     "id": "gcp",
     "name": "GCP",
-    "msgQueueFullName": "Pub/Sub"
+    "msgQueueFullName": "Pub/Sub",
+    "secretStoreFullName": "Secret Store"
   }
 ]
