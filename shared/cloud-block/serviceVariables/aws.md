@@ -9,6 +9,6 @@ These variables are specific to use of the AWS SQS service.
 |AWS_SQS_ACCESS_KEY|IAM access key ID                                                                  |
 |AWS_SQS_SECRET_KEY|IAM secret key for access key                                                      |
 
-We assume you define the variables as balena Environment Variables. You also may define them in a Secret store as described in the cloud block [Overview](/learn/develop/integrations/cloud-block-overview/aws).
+We assume you define the variables as balena Environment Variables. You also may define them in a Secret store as described in the cloud block [Reference](/learn/develop/integrations/cloud-block-overview/aws).
 
 See the [SQS Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) for help setting up the queue service. See the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) for help setting up the identity. The IAM User must at least be assigned the SQS *SendMessage* permission.

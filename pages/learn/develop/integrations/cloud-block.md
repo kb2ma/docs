@@ -26,7 +26,7 @@ To illustrate how the cloud block works, we will use a data source that takes te
 
 As shown in the architecture diagram above, our goal is to push data to a source topic on an MQTT broker on the balena device. We then wire the cloud block to subscribe to the source topic. See the [example application](https://github.com/kb2ma/cloudBlock-test/tree/main/cputemp) for the CPU temperature reader that does just that.
 
-As shown in the [docker-compose.yml](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/docker-compose.yml) for our example application, you must define three services as shown in the table below.
+As shown in the [docker-compose.yml](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/docker-compose.yml) for our example application, you must define three services, also shown in the table below.
 
 | Service    | Notes                                                                                                                                                       |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -37,7 +37,7 @@ As shown in the [docker-compose.yml](https://github.com/kb2ma/cloudBlock-test/bl
 Later, you will push these service definitions to balena cloud as described below. Of course you may wish to push the services locally during development, as described in the balena Develop Locally instructions.
 
 ### Data source topic
-For our example application, [data_source/main.py](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/data_source/main.py) takes a temperature reading every 30 seconds, and publishes the reading to the *cpu_temp* topic. We must adapt the cloud block to subscribe to the *cpu_temp* topic used by the data source. By default the cloud block subscribes to the topic *cloud-block-input*. The default may be overridden by defining an environment variable, as shown in the next section.
+For our example application, [data_source/main.py](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/data_source/main.py) takes a temperature reading every 30 seconds, and publishes the reading to the *cpu_temp* MQTT topic. We must adapt the cloud block to subscribe to the *cpu_temp* topic used by the data source. By default the cloud block subscribes to the topic *cloud-block-input*. The default may be overridden by defining an environment variable, as shown in the next section.
 
 ## Create application
 From your balenaCloud account, create a Microservices or Starter application as described in the balena Getting Started instructions. Next, you must define environment variables for the application that configure the cloud block, as described here. The configuration for the cloud block must identify the AWS SQS queue to use as well as the AWS Identity and Access Management (IAM) identity that is sending messages.
