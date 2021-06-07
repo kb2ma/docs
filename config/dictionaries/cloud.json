@@ -2,19 +2,37 @@
   {
     "id": "aws",
     "name": "AWS",
+    "msgQueueShortName": "SQS",
     "msgQueueFullName": "Simple Queue Service",
+    "msgQueueEnvVars": [{
+        "name": "AWS_SQS_QUEUE_NAME", "notes": "Name or topic of the queue in the cloud"
+      },
+      {
+        "name": "AWS_SQS_REGION", "notes": "AWS region in which the queue is defined"
+      },
+      {
+        "name": "AWS_SQS_ACCESS_KEY", "notes": "IAM access key ID"
+      },
+      {
+        "name": "AWS_SQS_SECRET_KEY", "notes": "IAM secret key for access key"
+      }
+    ],
     "secretStoreFullName": "Secrets Manager"
   },
   {
     "id": "azure",
     "name": "Azure",
     "msgQueueFullName": "Event Hubs",
+    "msgQueueShortName": "Event Hubs",
+    "msgQueueEnvVars": [],
     "secretStoreFullName": "Key Vault"
   },
   {
     "id": "gcp",
     "name": "GCP",
     "msgQueueFullName": "Pub/Sub",
+    "msgQueueShortName": "Pub/Sub",
+    "msgQueueEnvVars": [],
     "secretStoreFullName": "Secret Store"
   }
 ]

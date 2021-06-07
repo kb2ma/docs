@@ -42,15 +42,26 @@ For our example application, [data_source/main.py](https://github.com/kb2ma/clou
 ## Create application
 From your balenaCloud account, create a Microservices or Starter application as described in the balena Getting Started instructions. Next, you must define environment variables for the application that configure the cloud block, as described here. The configuration for the cloud block must identify the AWS SQS queue to use as well as the AWS Identity and Access Management (IAM) identity that is sending messages.
 
-{{import "cloud-block/serviceVariables"}}
+### {{ $cloud.msgQueueShortName }} variables
+These variables are specific to use of the {{ $cloud.name }} {{ $cloud.msgQueueFullName }}.
+
+| Variable   | Notes                                              |
+|------------|----------------------------------------------------|
+{{#$cloud.msgQueueEnvVars}}
+   | {{{ name }}}              | {{{ notes }}}                              |
+{{/$cloud.msgQueueEnvVars}}
+
+We assume you define the variables as balena Environment Variables. You also may define them in a Secret store as described in the cloud block [Reference](/learn/develop/integrations/cloud-block-overview/aws). In this case key names in the secret store are formatted as lower case, connected with dashes "-". For example, *AWS_SQS_QUEUE_NAME* becomes *aws-sqs-queue-name*.
+
+{{import "cloud-block/serviceSetup"}}
 
 ### Cloud block variables
 These variables configure the cloud block on the balena device.
 
 | Variable              | Notes                                                                                                                                             |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-|CLOUD_BLOCK_INPUT_TOPIC|MQTT topic to which the cloud block subscribes for messages from the data source. Identified as `<source-topic>` in the architecture diagram above. Defaults to *cloud-input*. |
-|CLOUD_BLOCK_DEBUG      |Define as 1 to write debug messages to the *cloud* service log                                                                                                   |
+|MQTT_INPUT_TOPIC|MQTT topic to which the cloud block subscribes for messages from the data source. Identified as `<source-topic>` in the architecture diagram above. Defaults to *cloud-input*. |
+|DAPR_DEBUG      |Define as 1 to write debug messages to the *cloud* service log                                                                                                   |
 
 ## Push service definitions to balenaCloud and provision device
 Once you have defined the application, you may push the service definitions created above to balenaCloud with the `balena push <app-name>` CLI command. See the balena Getting Started instructions for details.
