@@ -20,7 +20,7 @@ The documentation below shows you how to implement this data flow.
  1. Push service definitions to balenaCloud
  1. Provision device
 
-To illustrate how the cloud block works, we will use a data source that takes temperature readings from the device's CPU. These readings are readily available and do not require hardware or software setup. We will send these readings to {{ $cloud.name }} {{ $cloud.msgQueueFullName }} as JSON data messages.
+To illustrate how the cloud block works, we will use a data source that takes temperature readings from the device's CPU. These readings are readily available and do not require hardware or software setup. We will send these readings to {{ $cloud.name }} {{ $cloud.msgQueue.fullName }} as JSON data messages.
 
 ## Define device services
 
@@ -42,18 +42,18 @@ For our example application, [data_source/main.py](https://github.com/kb2ma/clou
 ## Create application
 From your balenaCloud account, create a Microservices or Starter application as described in the balena Getting Started instructions. Next, you must define environment variables for the application that configure the cloud block, as described here. The configuration for the cloud block must identify the AWS SQS queue to use as well as the AWS Identity and Access Management (IAM) identity that is sending messages.
 
-### {{ $cloud.msgQueueShortName }} variables
-These variables are specific to use of the {{ $cloud.name }} {{ $cloud.msgQueueFullName }}.
+### {{ $cloud.msgQueue.shortName }} variables
+These variables are specific to use of the {{ $cloud.name }} {{ $cloud.msgQueue.fullName }}.
 
 | Variable   | Notes                                              |
 |------------|----------------------------------------------------|
-{{#$cloud.msgQueueEnvVars}}
+{{#$cloud.msgQueue.envVars}}
    | {{{ name }}}              | {{{ notes }}}                              |
-{{/$cloud.msgQueueEnvVars}}
+{{/$cloud.msgQueue.envVars}}
 
 We assume you define the variables as balena Environment Variables. You also may define them in a Secret store as described in the cloud block [Reference](/learn/develop/integrations/cloud-block-overview/aws). In this case key names in the secret store are formatted as lower case, connected with dashes "-". For example, *AWS_SQS_QUEUE_NAME* becomes *aws-sqs-queue-name*.
 
-{{import "cloud-block/serviceSetup"}}
+{{ $cloud.msgQueue.setupNotes }}
 
 ### Cloud block variables
 These variables configure the cloud block on the balena device.

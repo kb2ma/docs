@@ -2,37 +2,73 @@
   {
     "id": "aws",
     "name": "AWS",
-    "msgQueueShortName": "SQS",
-    "msgQueueFullName": "Simple Queue Service",
-    "msgQueueEnvVars": [{
-        "name": "AWS_SQS_QUEUE_NAME", "notes": "Name or topic of the queue in the cloud"
-      },
-      {
-        "name": "AWS_SQS_REGION", "notes": "AWS region in which the queue is defined"
-      },
-      {
-        "name": "AWS_SQS_ACCESS_KEY", "notes": "IAM access key ID"
-      },
-      {
-        "name": "AWS_SQS_SECRET_KEY", "notes": "IAM secret key for access key"
-      }
-    ],
-    "secretStoreFullName": "Secrets Manager"
+    "msgQueue": {
+        "shortName": "SQS",
+        "fullName": "Simple Queue Service",
+        "envVars": [{
+            "name": "AWS_SQS_QUEUE_NAME", "notes": "Name or topic of the queue in the cloud"
+          },
+          {
+            "name": "AWS_SQS_REGION", "notes": "AWS region in which the queue is defined"
+          },
+          {
+            "name": "AWS_SQS_ACCESS_KEY", "notes": "IAM access key ID"
+          },
+          {
+            "name": "AWS_SQS_SECRET_KEY", "notes": "IAM secret key for access key"
+          }
+        ],
+        "setupNotes": "See the [SQS Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) for help setting up the queue service. See the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) for help setting up the identity. The IAM User must at least be assigned the SQS *SendMessage* permission."
+    },
+    "secretStore": {
+        "fullName": "Secrets Manager",
+        "envVars": [{
+            "name": "AWS_SECRETSMGR_REGION", "notes": "AWS region in which the secret store is defined"
+          },
+          {
+            "name": "AWS_SECRETSMGR_ACCESS_KEY", "notes": "IAM access key ID"
+          },
+          {
+            "name": "AWS_SECRETSMGR_SECRET_KEY", "notes": "IAM secret key for access key"
+          }
+        ],
+        "setupNotes": "See the AWS Secrets Manager [User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) for help with setup. See the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) for general help with users and security.\n\nWhen actually adding secrets, add them simply as Plaintext -- no separate key and value. AWS Secrets Manager console defaults to a \"compound\" secret that contains a *list* of key:value pairs rather than just a single plaintext value."
+    }
   },
   {
     "id": "azure",
     "name": "Azure",
-    "msgQueueFullName": "Event Hubs",
-    "msgQueueShortName": "Event Hubs",
-    "msgQueueEnvVars": [],
-    "secretStoreFullName": "Key Vault"
+    "msgQueue": {
+        "shortName": "Event Hubs",
+        "fullName": "Event Hubs",
+        "envVars": [],
+        "setupNotes": "TBD"
+    },
+    "secretStore": {
+        "fullName": "Key Vault",
+        "envVars": [{
+            "name": "AZURE_VAULT_NAME", "notes": ""
+          },
+          {
+            "name": "AZURE_VAULT_TENANT_ID", "notes": ""
+          },
+          {
+            "name": "AZURE_VAULT_CLIENT_ID", "notes": ""
+          }
+        ]
+    }
   },
   {
     "id": "gcp",
     "name": "GCP",
-    "msgQueueFullName": "Pub/Sub",
-    "msgQueueShortName": "Pub/Sub",
-    "msgQueueEnvVars": [],
-    "secretStoreFullName": "Secret Store"
+    "msgQueue": {
+        "shortName": "Pub/Sub",
+        "fullName": "Pub/Sub",
+        "envVars": [],
+        "setupNotes": "TBD"
+    },
+    "secretStore": {
+        "fullName": "Secret Store"
+    }
   }
 ]

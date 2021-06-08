@@ -18,7 +18,7 @@ This autoconfiguration capability also means you may send data to *multiple* clo
 
 ## Configuration via Secret Store
 
-{{ $cloud.name }} includes a secret store service, {{ $cloud.secretStoreFullName }}. Like it sounds, a secret store is used to store and access secret values, accessed by name like an environment variable. In fact, the services we wish to configure are housed with the cloud provider. So actually it is safer and more convenient to store the service configuration values as secrets with the provider in the cloud rather than specify them separately as Environment Variables in balenaCloud.
+{{ $cloud.name }} includes a secret store service, {{ $cloud.secretStore.fullName }}. Like it sounds, a secret store is used to store and access secret values, accessed by name like an environment variable. In fact, the services we wish to configure are housed with the cloud provider. So actually it is safer and more convenient to store the service configuration values as secrets with the provider in the cloud rather than specify them separately as Environment Variables in balenaCloud.
 
 In addition a security best practice is to periodically rotate secret values just in case a value has been compromised without your knowledge. Rotation is easier to implement when the the secret values are defined with the cloud service provider.
 
@@ -26,4 +26,12 @@ The diagram below shows the steps to setup and run the cloud block. The cloud bl
 
 ![cloud-block-config](/img/integrations/cloud-block/cloud-block-configuration.png)
 
-{{import "cloud-block/secretStore"}}
+A secret store itself also requires some setup and authentication values to allow access to its secrets. These values *must* be provided as balena Environment Variables. AWS Secrets Manager requires the environment variables below.
+
+| Variable                | Notes                                                                             |
+|-------------------------|-----------------------------------------------------------------------------------|
+{{#$cloud.secretStore.envVars}}
+   | {{{ name }}}              | {{{ notes }}}                              |
+{{/$cloud.secretStore.envVars}}
+
+{{ $cloud.secretStore.setupNotes }}
