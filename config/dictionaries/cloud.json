@@ -2,23 +2,24 @@
   {
     "id": "aws",
     "name": "AWS",
+    "fullName": "AWS",
     "msgQueue": {
         "shortName": "SQS",
         "fullName": "Simple Queue Service",
         "envVars": [{
-            "name": "AWS_SQS_QUEUE_NAME", "notes": "Name or topic of the queue in the cloud"
+            "name": "AWS_SQS_QUEUE_NAME", "notes": "Name or topic of the queue in SQS"
           },
           {
             "name": "AWS_SQS_REGION", "notes": "AWS region in which the queue is defined"
           },
           {
-            "name": "AWS_SQS_ACCESS_KEY", "notes": "IAM access key ID"
+            "name": "AWS_SQS_ACCESS_KEY", "notes": "IAM access key ID; user must at least be assigned the SQS *SendMessage* permission"
           },
           {
             "name": "AWS_SQS_SECRET_KEY", "notes": "IAM secret key for access key"
           }
         ],
-        "setupNotes": "See the [SQS Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) for help setting up the queue service. See the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) for help setting up the identity. The IAM User must at least be assigned the SQS *SendMessage* permission."
+        "setupNotes": "See the [SQS Developer Guide](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) for help setting up the queue service. See the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/index.html) for help setting up the identity."
     },
     "secretStore": {
         "fullName": "Secrets Manager",
@@ -38,10 +39,26 @@
   {
     "id": "azure",
     "name": "Azure",
+    "fullName": "Microsoft Azure",
     "msgQueue": {
         "shortName": "Event Hubs",
         "fullName": "Event Hubs",
-        "envVars": [],
+        "envVars": [{
+            "name": "AZURE_EH_CONNECTIONSTRING", "notes": ""
+          },
+          {
+            "name": "AZURE_EH_CONSUMER_GROUP", "notes": ""
+          },
+          {
+            "name": "AZURE_EH_STORAGE_ACCOUNT", "notes": ""
+          },
+          {
+            "name": "AZURE_EH_STORAGE_ACCOUNT_KEY", "notes": ""
+          },
+          {
+            "name": "AZURE_EH_CONTAINER_NAME", "notes": ""
+          }
+        ],
         "setupNotes": "TBD"
     },
     "secretStore": {
@@ -55,20 +72,51 @@
           {
             "name": "AZURE_VAULT_CLIENT_ID", "notes": ""
           }
-        ]
+        ],
+        "setupNotes": "Use of Azure Key Vault also requires its PFX certificate file. You must extend the cloud block docker image to copy the PFX file to `/app/components/azure-vault-cert.pfx`. See an example [Dockerfile](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/cloud/Dockerfile)."
     }
   },
   {
     "id": "gcp",
     "name": "GCP",
+    "fullName": "Google Cloud",
     "msgQueue": {
         "shortName": "Pub/Sub",
         "fullName": "Pub/Sub",
-        "envVars": [],
-        "setupNotes": "TBD"
+        "envVars": [{
+            "name": "GCP_PUBSUB_TOPIC", "notes": "Name or topic of the queue in Pub/Sub"
+          },
+          {
+            "name": "GCP_PUBSUB_TYPE", "notes": "Credentials type, like 'service_account'"
+          },
+          {
+            "name": "GCP_PUBSUB_PROJECT_ID", "notes": "GCP Project ID containing Pub/Sub topic"
+          },
+          {
+            "name": "GCP_PUBSUB_CLIENT_EMAIL", "notes": "Email address of IAM service account or member publishing to Pub/Sub topic; must at least have role of *Pub/Sub Publisher* for the topic"
+          },
+          {
+            "name": "GCP_PUBSUB_PRIVATE_KEY", "notes": "Credentials private key"
+          }
+        ],
+        "setupNotes": "See the Pub/Sub [documentation](https://cloud.google.com/pubsub/docs) for help getting started. See the IAM [documentation](https://cloud.google.com/iam/docs) for help setting up an identity."
     },
     "secretStore": {
-        "fullName": "Secret Store"
+        "fullName": "Secret Manager",
+        "envVars": [{
+            "name": "GCP_SECRETMGR_TYPE", "notes": "Credentials type, like 'service_account'"
+          },
+          {
+            "name": "GCP_SECRETMGR_PROJECT_ID", "notes": "GCP Project ID for the Secret Store"
+          },
+          {
+            "name": "GCP_SECRETMGR_CLIENT_EMAIL", "notes": "Email address of IAM service account or member accessing Secret Store; must at least have role of *Secret Manager Secret Accessor* for contained secrets"
+          },
+          {
+            "name": "GCP_SECRETMGR_PRIVATE_KEY", "notes": "Credentials private key"
+          }
+        ],
+        "setupNotes": "See the Secret Manager [documentation](https://cloud.google.com/secret-manager/docs) for help getting started. See the IAM [documentation](https://cloud.google.com/iam/docs) for help setting up an identity."
     }
   }
 ]
