@@ -23,7 +23,7 @@ This autoconfiguration capability also means you may send data to *multiple* clo
 ### Using {{ $cloud.secretStore.fullName }}
 The cloud block automatically recognizes secrets with certain names, just as it recognizes environment variables. For example, the cloud block looks for an environment variable named *AWS_SQS_QUEUE_NAME* to use the AWS SQS message queue. Equivalently, the cloud block looks for a secret named *aws-sqs-queue-name* in a secret store. Key names in the secret store must be formatted as lower case, connected with dashes "-". If you define an environment variable *and* a secret with equivalent names, then the environment variable takes precedence.
 
-The cloud block requires some configuration values to access the secret store's secrets. These values must be provided as balena environment variables, as shown below. Use of {{ $cloud.name }} {{ $cloud.secretStore.fullName }} is autoconfigured, like other cloud services. You only need to define the variables for the cloud block to use {{ $cloud.secretStore.fullName }}.
+The cloud block requires some configuration values to access the secret store's secrets. These values must be provided as balena environment variables, as shown below. Use of {{ $cloud.name }} {{ $cloud.secretStore.fullName }} is autoconfigured, so you only need to define the variables for the cloud block to use it.
 
 | Variable                | Notes                                                                             |
 |-------------------------|-----------------------------------------------------------------------------------|

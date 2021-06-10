@@ -44,36 +44,36 @@
         "shortName": "Event Hubs",
         "fullName": "Event Hubs",
         "envVars": [{
-            "name": "AZURE_EH_CONNECTIONSTRING", "notes": ""
+            "name": "AZURE_EH_CONNECTIONSTRING", "notes": "Shared access policy for the event hub entity; must at least be assigned the *Send* right"
           },
           {
-            "name": "AZURE_EH_CONSUMER_GROUP", "notes": ""
+            "name": "AZURE_EH_CONSUMER_GROUP", "notes": "Viewer for the event hub entity"
           },
           {
-            "name": "AZURE_EH_STORAGE_ACCOUNT", "notes": ""
+            "name": "AZURE_EH_STORAGE_ACCOUNT", "notes": "Account to receive and checkpoint data"
           },
           {
-            "name": "AZURE_EH_STORAGE_ACCOUNT_KEY", "notes": ""
+            "name": "AZURE_EH_STORAGE_ACCOUNT_KEY", "notes": "Access key for the storage account"
           },
           {
-            "name": "AZURE_EH_CONTAINER_NAME", "notes": ""
+            "name": "AZURE_EH_CONTAINER_NAME", "notes": "Container within the storage account"
           }
         ],
-        "setupNotes": "TBD"
+        "setupNotes": "See the Azure Event Hubs [documentation](https://docs.microsoft.com/en-us/azure/event-hubs/) for help with setup."
     },
     "secretStore": {
         "fullName": "Key Vault",
         "envVars": [{
-            "name": "AZURE_VAULT_NAME", "notes": ""
+            "name": "AZURE_VAULT_NAME", "notes": "Name for the key vault"
           },
           {
-            "name": "AZURE_VAULT_TENANT_ID", "notes": ""
+            "name": "AZURE_VAULT_TENANT_ID", "notes": "Tenant ID for service principal; must have GET permission for the key vault"
           },
           {
-            "name": "AZURE_VAULT_CLIENT_ID", "notes": ""
+            "name": "AZURE_VAULT_CLIENT_ID", "notes": "appID for service principal"
           }
         ],
-        "setupNotes": "Use of Azure Key Vault also requires its PFX certificate file. You must extend the cloud block docker image to copy the PFX file to `/app/components/azure-vault-cert.pfx`. See an example [Dockerfile](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/cloud/Dockerfile)."
+        "setupNotes": "Use of Azure Key Vault also requires the PFX certificate file generated for the service principal. You must extend the cloud block Docker image to copy the PFX file to */app/components/azure-vault-cert.pfx*. See an example [docker-compose.yml](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/docker-compose.yml) and [Dockerfile](https://github.com/kb2ma/cloudBlock-test/blob/main/cputemp/cloud/Dockerfile).\n\nSee the Azure Key Vault [documentation](https://docs.microsoft.com/en-us/azure/key-vault/) for help with setup. See the Azure Active Directory [documentation](https://docs.microsoft.com/en-us/azure/active-directory/) for more about service principals."
     }
   },
   {
